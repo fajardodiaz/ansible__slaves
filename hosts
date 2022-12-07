@@ -1,8 +1,5 @@
 [all]
 ubuntu-slave-[1:3]
 
-[workers]
-ubuntu-slave-1
-
 [slaves]
 ubuntu-slave-[2:3]
