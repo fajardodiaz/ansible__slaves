@@ -1,0 +1,88 @@
+- name: Playbook to install common tools
+  hosts: all
+  remote_user: ubuntu
+  tasks:
+  - name: Install unzip
+    apt:
+        update_cache: yes
+        name: unzip
+        state: latest
+  - name: Install curl
+    apt:
+      name: curl
+      state: latest
+  - name: Install wget
+    apt:
+      name: wget
+      state: latest
+  - name: Install vim
+    apt:
+      name: vim
+      state: latest
+
+  - name: Install git
+    apt:
+      name: git
+      state: latest
+
+  - name: Install net tools
+    apt:
+      name: net-tools
+      state: latest
+  
+  - name: Update ubuntu
+    apt:
+        update_cache: yes
+  
+  - name: Install JAVA
+    apt:
+        update_cache: yes 
+        name: openjdk-11-jdk
+        state: present 
+  
+  - name: Install Python3
+    apt:
+        update_cache: yes 
+        name: python3
+        state: latest
+
+  - name: Install pip3
+    apt:
+        update_cache: yes 
+        name: python3-pip
+        state: latest
+
+
+  - name: Set the JAVA_HOME in /etc/profile file
+    lineinfile:
+        path: /etc/profile
+        state: present
+        line: "{{ item }}"
+    with_items:
+        - 'export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"'
+        - 'export PATH=$PATH:$JAVA_HOME/bin'
+
+  - name: Reload /etc/profile file
+    shell:
+        cmd: . /etc/profile
+    
+  - name: Install bzt
+    shell:
+      cmd: pip3 install bzt
+
+  - name: Copy .bzt-rc file
+    copy:
+        src: ./.bzt-rc
+        dest: /home/ubuntu
+        owner: ubuntu
+        mode: '0744'
+  
+  - name: Copy .bzt-rc file to root
+    copy:
+        src: ./.bzt-rc
+        dest: /root
+        owner: ubuntu
+        mode: '0744'
+
+  
+  

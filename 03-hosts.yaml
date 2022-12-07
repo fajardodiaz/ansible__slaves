@@ -1,0 +1,15 @@
+- name: Playbook to add hosts
+  hosts: all
+  remote_user: ubuntu
+  tasks:
+
+  - name: Update hosts
+    lineinfile:
+      path: /etc/hosts
+      state: present
+      line: "{{ item }}"
+    with_items:
+      - '107.154.135.229  	apicm-staging.copaair.com'
+      - '107.154.135.229  	apicm-uat.copaair.com'
+      - '107.154.135.229  	copacom-staging.copaair.com'
+      - '107.154.135.229  	copacom-uat.copaair.com'

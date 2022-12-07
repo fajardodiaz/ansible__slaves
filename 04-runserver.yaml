@@ -1,0 +1,9 @@
+- name: start jmeter service
+  hosts: all
+  remote_user: ubuntu
+  tasks:
+
+  - name: Start jmeter server
+    shell:
+      cmd: cd /opt/apache-jmeter-5.5/bin/ && sudo bash jmeter-server
+    

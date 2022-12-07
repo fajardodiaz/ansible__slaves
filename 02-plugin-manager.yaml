@@ -1,0 +1,48 @@
+- name: Playbook to install common tools
+  hosts: all
+  remote_user: ubuntu
+  tasks:
+  # Install JMETER
+  - name: Download jmeter
+    get_url:
+        url: https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.zip
+        dest: /home/ubuntu/apache-jmeter-5.5.zip
+
+  - name: Unzip jmeter
+    unarchive:
+      src: /home/ubuntu/apache-jmeter-5.5.zip
+      dest: /opt/
+      remote_src: yes
+
+  #Plugin Manager
+  - name: Install cmd runner
+    copy: 
+      src: ./cmdrunner-2.3.jar
+      dest: /opt/apache-jmeter-5.5/lib
+
+  - name: Download plugin manager
+    copy: 
+      src: ./jmeter-plugins-manager-1.8.jar
+      dest: /opt/apache-jmeter-5.5/lib/ext/
+
+  - name: Install plugin manager
+    shell:
+      cmd: cd /opt/apache-jmeter-5.5 && java -cp /opt/apache-jmeter-5.5/lib/ext/jmeter-plugins-manager-1.8.jar org.jmeterplugins.repository.PluginManagerCMDInstaller
+
+  #Server properties
+  - name: copy rmi_keystore file
+    copy:
+      src: ./rmi_keystore.jks
+      dest: /opt/apache-jmeter-5.5/bin/
+      owner: ubuntu
+
+  - name: Copy bash file to edit server properties
+    copy:
+        src: ./edit-server.sh
+        dest: /home/ubuntu
+        owner: ubuntu
+        mode: '0744'
+    
+  - name: Execute script to set jmeter server properties
+    shell:
+        cmd: cd /home/ubuntu && bash edit-server.sh
