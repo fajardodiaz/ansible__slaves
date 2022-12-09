@@ -1,0 +1,13 @@
+- name: start jmeter service
+  hosts: worker
+  remote_user: ubuntu
+  tasks:
+
+  - name: Update remote hosts
+    lineinfile:
+      path: /opt/apache-jmeter-5.5/bin/jmeter.properties
+      state: present
+      line: "{{ item }}"
+    with_items:
+      - 'remote_hosts=11.0.1.136,11.0.1.6,11.0.1.80'
+    

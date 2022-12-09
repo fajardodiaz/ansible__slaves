@@ -1,5 +1,5 @@
 - name: start jmeter service
-  hosts: all
+  hosts: slaves
   remote_user: ubuntu
   tasks:
 
