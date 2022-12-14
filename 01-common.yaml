@@ -4,7 +4,6 @@
   tasks:
   - name: Install unzip
     apt:
-        update_cache: yes
         name: unzip
         state: latest
   - name: Install curl
@@ -30,27 +29,22 @@
       name: net-tools
       state: latest
   
-  - name: Update ubuntu
-    apt:
-        update_cache: yes
-  
   - name: Install JAVA
     apt:
-        update_cache: yes 
-        name: openjdk-11-jdk
-        state: present 
+      update_cache: yes 
+      name: openjdk-11-jdk
+      state: present 
   
   - name: Install Python3
     apt:
-        update_cache: yes 
-        name: python3
-        state: latest
+      name: python3
+      state: latest
 
   - name: Install pip3
     apt:
-        update_cache: yes 
-        name: python3-pip
-        state: latest
+      update_cache: yes 
+      name: python3-pip
+      state: latest
 
 
   - name: Set the JAVA_HOME in /etc/profile file

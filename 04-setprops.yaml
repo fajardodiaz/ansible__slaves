@@ -1,5 +1,5 @@
 - name: start jmeter service
-  hosts: worker
+  hosts: master
   remote_user: ubuntu
   tasks:
 
@@ -9,5 +9,5 @@
       state: present
       line: "{{ item }}"
     with_items:
-      - 'remote_hosts=11.0.1.136,11.0.1.6,11.0.1.80'
+      - 'remote_hosts=100.26.104.82,54.89.212.16'
     
