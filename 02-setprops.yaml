@@ -9,5 +9,5 @@
       state: present
       line: "{{ item }}"
     with_items:
-      - 'remote_hosts=100.26.104.82,54.89.212.16'
+      - 'remote_hosts=11.0.1.245,11.0.1.88'
     

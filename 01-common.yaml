@@ -6,14 +6,17 @@
     apt:
         name: unzip
         state: latest
+
   - name: Install curl
     apt:
       name: curl
       state: latest
+
   - name: Install wget
     apt:
       name: wget
       state: latest
+  
   - name: Install vim
     apt:
       name: vim
@@ -32,7 +35,7 @@
   - name: Install JAVA
     apt:
       update_cache: yes 
-      name: openjdk-11-jdk
+      name: openjdk-11-jdk-headless
       state: present 
   
   - name: Install Python3
@@ -47,22 +50,26 @@
       state: latest
 
 
-  - name: Set the JAVA_HOME in /etc/profile file
-    lineinfile:
-        path: /etc/profile
-        state: present
-        line: "{{ item }}"
-    with_items:
-        - 'export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"'
-        - 'export PATH=$PATH:$JAVA_HOME/bin'
+  # - name: Set the JAVA_HOME in /etc/profile file
+  #   lineinfile:
+  #       path: /etc/profile
+  #       state: present
+  #       line: "{{ item }}"
+  #   with_items:
+  #       - 'export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"'
+  #       - 'export PATH=$PATH:$JAVA_HOME/bin'
 
-  - name: Reload /etc/profile file
-    shell:
-        cmd: . /etc/profile
+  # - name: Reload /etc/profile file
+  #   shell:
+  #       cmd: . /etc/profile
     
   - name: Install bzt
     shell:
       cmd: pip3 install bzt
+
+  - name: Install bzt
+    shell:
+      cmd: sudo pip3 install bzt
 
   - name: Copy .bzt-rc file
     copy:
@@ -75,7 +82,7 @@
     copy:
         src: ./.bzt-rc
         dest: /root
-        owner: ubuntu
+        owner: root
         mode: '0744'
 
   # Install JMETER
