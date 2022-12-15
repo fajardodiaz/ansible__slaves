@@ -1,0 +1,25 @@
+- name: start jmeter service
+  hosts: slave
+  remote_user: ubuntu
+  tasks:
+  - name: copy jmeter service 
+    copy:
+      src: ./jmeterserver.service
+      dest: /etc/systemd/system
+      owner: root
+
+  - name: reload daemons
+    shell:
+      cmd: sudo systemctl daemon-reload
+  
+  - name: Init the service
+    shell:
+      cmd: sudo systemctl start jmeterserver.service
+
+  - name: Status of the service
+    shell:
+      cmd: sudo systemctl status jmeterserver.service
+
+  - name: Enable the service
+    shell:
+      cmd: sudo systemctl enable jmeterserver.service

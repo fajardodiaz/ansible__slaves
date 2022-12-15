@@ -1,0 +1,11 @@
+[Unit]
+Description=run jmeter server in the background
+
+[Service]
+User=root
+WorkingDirectory=/opt/apache-jmeter-5.5/bin/
+ExecStart=/bin/bash -c "cd /opt/apache-jmeter-5.5/bin && bash jmeter-server"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
