@@ -2,10 +2,14 @@
   hosts: all
   remote_user: ubuntu
   tasks:
+  - name: Update ubuntu
+    apt:
+      update_cache: true
+      force_apt_get: true
   - name: Install unzip
     apt:
-        name: unzip
-        state: latest
+      name: unzip
+      state: latest
 
   - name: Install curl
     apt:
@@ -119,16 +123,16 @@
       dest: /opt/apache-jmeter-5.5/bin/
       owner: ubuntu
 
-  - name: Copy bash file to edit server properties
-    copy:
-        src: ./edit-server.sh
-        dest: /home/ubuntu
-        owner: ubuntu
-        mode: '0744'
+  # - name: Copy bash file to edit server properties
+  #   copy:
+  #       src: ./edit-server.sh
+  #       dest: /home/ubuntu
+  #       owner: ubuntu
+  #       mode: '0744'
     
-  - name: Execute script to set jmeter server properties
-    shell:
-        cmd: cd /home/ubuntu && bash edit-server.sh
+  # - name: Execute script to set jmeter server properties
+  #   shell:
+  #       cmd: cd /home/ubuntu && bash edit-server.sh
 
 # GIT REPO
   - name: clone git repo
