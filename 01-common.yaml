@@ -123,6 +123,10 @@
       dest: /opt/apache-jmeter-5.5/bin/
       owner: ubuntu
 
+  - name: Turn off firewall
+    shell:
+      cmd: uwf disable
+
   # - name: Copy bash file to edit server properties
   #   copy:
   #       src: ./edit-server.sh

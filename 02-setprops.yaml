@@ -10,4 +10,4 @@
       line: "{{ item }}"
     with_items:
       - 'remote_hosts=11.0.1.245,11.0.1.88'
-    
+      - 'server.rmi.localport=4000'
