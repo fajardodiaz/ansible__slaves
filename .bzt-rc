@@ -1,7 +1,7 @@
 # General Settings
 settings:
   default-executor: jmeter  # if you prefer using other executor by default - change this option
-  artifacts-dir: ~/bzt-artifacts/%Y-%m-%d_%H-%M-%S.%f  # change the default place to store artifact files
+  artifacts-dir: ~/bzt-artifacts/COPA_%Y-%m-%d_%H-%M  # change the default place to store artifact files
   check-updates: true  # check for newer version of Taurus on startup
   check-interval: 1s  # interval for Taurus engine to check test status and do other actions
 

@@ -1,0 +1,8 @@
+- name: Playbook to run test
+  hosts: all
+  remote_user: ubuntu
+  tasks:
+  - name: Run test
+    shell:
+      cmd: cd /home/ubuntu/jmeter_test && sudo bzt CopaCom.jmx -report | less
+  

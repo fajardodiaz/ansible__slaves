@@ -6,3 +6,8 @@ ubuntu-slave-1
 
 [slave]
 ubuntu-slave-[2:3]
+
+[jenkins]
+east-master-[1:2]
+west-master-[1:2]
+saopaulo-master-[1:4]
